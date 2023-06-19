@@ -102,7 +102,13 @@
     };
 
     /* Custom Defined Behaviors */
-
+    td0: tap_dance_0 {
+        compatible = "zmk,behavior-tap-dance";
+        label = "TAP_DANCE_LAYER";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&tog 3>, <&tog 4>, <&none>;
+    };
 
     /* Automatically generated keymap */
     keymap {
@@ -116,7 +122,7 @@
       &none   &kp B   &kp Y     &kp O      &kp U    &kp SQT                                                                 &kp SEMI    &kp L     &kp D     &kp W   &kp V      &kp Z
      &tog 4   &kp C   &kp I     &kp E      &kp A  &kp COMMA                                                                  &kp DOT    &kp H     &kp T     &kp S   &kp N      &kp Q
       &none   &kp G   &kp X     &kp J      &kp K  &kp MINUS  &kp LSHFT  &kp LCTRL    &none  &kp LGUI  &kp RCTRL  &kp RSHFT  &kp FSLH    &kp R     &kp M     &kp F   &kp P     &kp UP
- &magic 2 0  &tog 3   &none  &kp LEFT  &kp RIGHT              &kp BSPC    &kp DEL  &kp ESC     &none    &kp RET  &kp SPACE            &kp TAB  &kp LBKT  &kp RBKT   &none   &kp DOWN
+ &magic 2 0    &td0   &none  &kp LEFT  &kp RIGHT              &kp BSPC    &kp DEL  &kp ESC     &none    &kp RET  &kp SPACE            &kp TAB  &kp LBKT  &kp RBKT   &none   &kp DOWN
             >;
         };
 
@@ -153,14 +159,14 @@
             >;
         };
 
-        layer_Russian {
+        layer_Gaming {
             bindings = <
- &trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+  &kp ESC   &none  &kp F5  &kp F6  &kp F10                                                                        &trans  &trans  &trans  &trans  &trans
+    &none  &kp N1  &kp N2  &kp N3   &kp N4  &kp N5                                                        &trans  &trans  &trans  &trans  &trans  &trans
+  &kp TAB   &none   &kp Q   &kp W    &kp E   &kp R                                                        &trans  &trans  &trans  &trans  &trans  &trans
+ &kp CAPS   &none   &kp A   &kp S    &kp D   &kp F                                                        &trans  &trans  &trans  &trans  &trans  &trans
+    &none   &kp G   &kp Z   &kp X    &kp C   &kp V  &kp SPACE   &kp LALT   &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+    &none   &none   &none   &none    &none          &kp LSHFT  &kp LCTRL   &none  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
 
