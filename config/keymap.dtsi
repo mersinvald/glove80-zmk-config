@@ -946,7 +946,76 @@ combos {
     };
 };
 
+macros {
+    my_bt_select_0: my_bt_select_0 {
+        label = "MY_BT_SELECT_0";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&out OUT_BLE>,
+              <&bt BT_SEL 0>,
+              <&cond_set 0 0>;
+    };
+    my_bt_select_1: my_bt_select_1 {
+        label = "MY_BT_SELECT_1";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&out OUT_BLE>,
+              <&bt BT_SEL 1>,
+              <&cond_set 0 1>;
+    };
+    my_bt_select_2: my_bt_select_2 {
+        label = "MY_BT_SELECT_2";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&out OUT_BLE>,
+              <&bt BT_SEL 2>,
+              <&cond_set 0 2>;
+    };
+    my_bt_select_3: my_bt_select_3 {
+        label = "MY_BT_SELECT_3";
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        bindings
+            = <&out OUT_BLE>,
+              <&bt BT_SEL 3>,
+              <&cond_set 0 3>;
+    };
+};
+
 behaviors {
+    // Bluetooth slot selection w/ conditionals
+    bt_mac: bt_mac {
+        compatible = "zmk,behavior-tap-dance";
+        label = "BT_0";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&my_bt_select_0>, <&bt BT_DISC 0>;
+    };
+    bt_linux: bt_linux {
+        compatible = "zmk,behavior-tap-dance";
+        label = "BT_1";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&my_bt_select_1>, <&bt BT_DISC 1>;
+    };
+    bt_windows: bt_windows {
+        compatible = "zmk,behavior-tap-dance";
+        label = "BT_2";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&my_bt_select_2>, <&bt BT_DISC 2>;
+    };
+    bt_ios: bt_ios {
+        compatible = "zmk,behavior-tap-dance";
+        label = "BT_3";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&my_bt_select_3>, <&bt BT_DISC 3>;
+    };
+
     //////////////////////////////////////////////////////////////////////////
     //
     // Miryoku layers and home row mods (ported from my QMK endgame)
@@ -8367,9 +8436,16 @@ UNICODE_MORPH_MODS
         bindings = <&macro_tap &kp M &kp A &kp C &kp O &kp S>;
     )
 
-    ZMK_MACRO(dbg_current_os,
-        bindings = <&macro_tap &dbg_print_windows &dbg_print_linux &dbg_print_macos>;
+    ZMK_MACRO(dbg_print_ios,
+        bindings = <&macro_tap &kp I &kp O &kp S>;
     )
+
+    dbg_current_os: dbg_current_os {
+        compatible = "zmk,behavior-cond";
+        #binding-cells = <0>;
+        slot = <0>;
+        bindings = <&dbg_print_macos &dbg_print_linux &dbg_print_windows &dbg_print_ios>;
+    };
 
     //////////////////////////////////////////////////////////////////////////
     //
